@@ -10,8 +10,8 @@ Proyek ini bertujuan untuk menentukan churn dari nasabah bank, churn adalah ting
 
 ## Business Understanding
 ### - Problem Statement
-- Bagaimana cara memprediksi tingkat churn nasabah pada bank
-- Apa strategi yang efektif untuk mempertahankan nasabah bank
+- Bagaimana cara memprediksi tingkat churn nasabah pada bank ?
+- Apa strategi yang efektif untuk mempertahankan nasabah bank ?
 
 ### - Goals
 - Membangun model prediksi churn yang akurat, dengan memiliki model prediksi yang akurat, bank dapat mengambil tindakan proaktif untuk mempertahankan pelanggan dan mencegah kehilangan mereka ke bank lain
