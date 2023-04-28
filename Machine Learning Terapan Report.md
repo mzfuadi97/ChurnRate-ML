@@ -90,11 +90,13 @@ Akurasi model sebesar 84% dengan nilai MSE 0,16 dan MAE 0,16. Kemudian menggunak
 Pada hasil evaluasi memiih kasus klasifikasi dan menggunakan metrik **akurasi, precision, recall, dan F1 score**. Jelaskan mengenai beberapa hal berikut:
 
 ![Hyperparameter Tuning](https://user-images.githubusercontent.com/70827786/235040464-43044f55-1b7b-4029-a2c8-254869fbdd23.png)
+
 Gambar 5.  Hyperparameter Tuning
 
 Pada Gambar 5. Model Random Forest dan XGB memiliki nilai mean F1 Score yang cukup tinggi yaitu 0.795503 dan 0.794184 secara berturut-turut. Namun, jika diperhatikan juga nilai standard deviation (std), model XGB memiliki nilai std yang lebih rendah yaitu 0.009113 dibandingkan dengan model Random Forest yang memiliki nilai std 0.011238. Nilai std yang lebih rendah menunjukkan bahwa model XGB memiliki stabilitas performa yang lebih baik ketika diuji dengan data yang berbeda-beda, sehingga dapat dipertimbangkan sebagai model terbaik. Sehingga pada model algoritma yang digunakan pada permasalahan churn rate ini menggunakan XGBoost.
 
 ![CM](https://user-images.githubusercontent.com/70827786/235040222-b79c5bae-3304-485c-95a5-a02eb5e7b9c8.png)
+
 Gambar 6. Correlation Matrix
 
 Pada Gambar 6. dapat dilihat :
