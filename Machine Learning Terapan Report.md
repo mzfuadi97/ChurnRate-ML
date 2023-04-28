@@ -93,6 +93,15 @@ Pada hasil evaluasi memiih kasus klasifikasi dan menggunakan metrik **akurasi, p
 
 Gambar 5.  Hyperparameter Tuning
 
+Pada Gambar 5. Pada hyperparameter digunakan beberapa algoritma klasifikasi untuk menentukan model terbaik, dicoba pada LogisticRegression, DecisionTree, RandomForest, KNeighbors, XGB dan SVC. 
+
+- LogisticRegression : memprediksi probabilitas kejadian sebuah peristiwa (dalam hal ini, kemungkinan sebuah pelanggan akan beralih), pelanggan mana yang paling mungkin untuk beralih berdasarkan variabel yang telah ditentukan.
+- DecisionTree :  membuat keputusan berdasarkan serangkaian aturan dan pertanyaan (tree) yang digunakan untuk memprediksi target variabel, memprediksi tentang pelanggan yang akan beralih dengan menguji aturan berdasarkan fitur-fitur yang diberikan.
+- RandomForest : mirip dengan Decision Tree, namun beroperasi dengan menggabungkan beberapa decision tree, mirip dengan Decision Tree, namun beroperasi dengan menggabungkan beberapa decision tree.
+- KNeighbors : Melakukan klasifikasi dengan mencari tetangga terdekat dari suatu data point, memprediksi apakah pelanggan akan beralih dengan membandingkan fitur-fitur yang diberikan dengan data pelanggan yang sudah beralih sebelumnya.
+- XGB : Algoritma ensemble learning yang menggunakan banyak model kecil (boosting) untuk membuat model yang lebih besar dan lebih akurat, ensemble learning yang menggunakan banyak model kecil (boosting) untuk membuat model yang lebih besar dan lebih akurat.
+- SVC : Algoritma ini cocok digunakan untuk kasus dimana terdapat pemisah antara dua kelas data yang jelas. Dalam hal ini, SVC dapat digunakan untuk memprediksi apakah pelanggan akan beralih atau tidak berdasarkan variabel yang telah ditentukan.
+
 Pada Gambar 5. Model Random Forest dan XGB memiliki nilai mean F1 Score yang cukup tinggi yaitu 0.795503 dan 0.794184 secara berturut-turut. Namun, jika diperhatikan juga nilai standard deviation (std), model XGB memiliki nilai std yang lebih rendah yaitu 0.009113 dibandingkan dengan model Random Forest yang memiliki nilai std 0.011238. Nilai std yang lebih rendah menunjukkan bahwa model XGB memiliki stabilitas performa yang lebih baik ketika diuji dengan data yang berbeda-beda, sehingga dapat dipertimbangkan sebagai model terbaik. Sehingga pada model algoritma yang digunakan pada permasalahan churn rate ini menggunakan XGBoost.
 
 ![CM](https://user-images.githubusercontent.com/70827786/235040222-b79c5bae-3304-485c-95a5-a02eb5e7b9c8.png)
