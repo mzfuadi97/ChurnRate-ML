@@ -82,10 +82,8 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import cross_val_score
 
-# import algorithm classifier
-import xgboost as xgb
-import lightgbm as lgbm
-import catboost as cb
+# import algorithm plot importance
+from xgboost import plot_importance
 
 
 # full display
@@ -238,7 +236,7 @@ pipeline_xgb=Pipeline([("scalar5",StandardScaler()),
 pipeline_svm=Pipeline([("scalar5",StandardScaler()),
                      ("svm_classifier",SVC())])
 pipelines = [pipeline_logistic, pipeline_decision_t, pipeline_random_f, pipeline_kn, pipeline_xgb,pipeline_svm]
-pipe_dict = {0: "LogisticRegression", 1: "DecisionTree", 2: "RandomForest",3: "KNeighbors", 4: "XGB",5 : "SCV"}
+pipe_dict = {0: "LogisticRegression", 1: "DecisionTree", 2: "RandomForest",3: "KNeighbors", 4: "XGB",5 : "SVC"}
 for pipe in pipelines:
     pipe.fit(x_train, y_train)
 cv_results_rms = []
@@ -261,7 +259,7 @@ print(df)
 
 """### Fitting Model"""
 
-model = RandomForestClassifier()
+model = XGBClassifier()
 model.fit(x_train,y_train)
 
 y_pred=model.predict(x_test)
@@ -322,36 +320,31 @@ all_data = pd.concat([x_train, x_test], axis=0, ignore_index=True)
 # shuffle
 all_data_shuffled = all_data.sample(frac=1)
 
-# define our features and target variable
+# create our DMatrix (the XGBoost data structure)
 X = all_data_shuffled.drop(['AV_label'], axis=1)
 y = all_data_shuffled['AV_label']
-# create our RandomForestClassifier object
-rfc = RandomForestClassifier(n_estimators=200, max_depth=5)
+XGBdata = xgb.DMatrix(data=X,label=y)
 
-# perform cross validation with RandomForest
-cross_val_results = cross_val_score(rfc, X, y, cv=5, scoring='accuracy')
+# our XGBoost parameters
+params = {"objective":"binary:logistic",
+          "eval_metric":"logloss",
+          'learning_rate': 0.05,
+          'max_depth': 5, }
+
+# perform cross validation with XGBoost
+cross_val_results = xgb.cv(dtrain=XGBdata, params=params, 
+                       nfold=5, metrics="auc", 
+                       num_boost_round=200,early_stopping_rounds=20,
+                       as_pandas=True)
 
 # print out the final result
-print(cross_val_results.mean())
+print((cross_val_results["test-auc-mean"]))
 
 """### Membuat Plot Importance"""
 
-# Instantiate a random forest classifier object
-rfc = RandomForestClassifier(n_estimators=100, max_depth=10, min_samples_split=2)
-
-# Fit the classifier to the data
-rfc.fit(X, y)
-
-# Get the feature importances
-importances = rfc.feature_importances_
-
-# Sort the features by importance in descending order
-indices = np.argsort(importances)[::-1]
-
-# Plot the feature importances
-plt.figure(figsize=(12, 6))
-plt.title("Feature importances")
-plt.bar(range(X.shape[1]), importances[indices])
-plt.xticks(range(X.shape[1]), X.columns[indices], rotation=90)
-plt.show()
+classifier_over = XGBClassifier(eval_metric='logloss',use_label_encoder=False)
+classifier_over.fit(X, y)
+fig, ax = plt.subplots(figsize=(12,4))
+plot_importance(classifier_over, ax=ax)
+plt.show();
 
