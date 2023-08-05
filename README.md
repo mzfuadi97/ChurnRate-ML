@@ -125,5 +125,5 @@ Hal ini mungkin berarti bahwa faktor-faktor terkait gaji dan nama keluarga (surn
 
 ## REFERENCES
 [1] Wen Z, Yan J, Zhou L, Liu Y, Zhu K, Guo Z, Li Y, Zhang F (2018) Peringatan churn pelanggan dengan pembelajaran mesin Dalam The Euro-China Conference on Intelligent Data Analysis and Applications, hlm 343–350 Springer.
-[2] Tynan, K. (2018, March 5). Why Reducing Customer Churn Is Crucial For Banks. Forbes. 
+[2] Tynan, K. (2018, March 5). Why Reducing Customer Churn is Crucial For Banks. Forbes. 
 
